@@ -16,7 +16,8 @@ try:
     videolist = []
     for root, dirs, files in os.walk('videos'):
         for f in files:
-            videolist.append(f.replace('.time', '').replace('.his', ''))
+            if not f[:1] == '.':
+                videolist.append(f.replace('.time', '').replace('.his', ''))
     videolist = list(set(videolist))
 
     if sys.argv[1] == 'ls':

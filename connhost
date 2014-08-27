@@ -1,0 +1,74 @@
+#!/usr/bin/env python
+# coding=utf8
+
+import socket
+import sys
+
+port = int(22)
+
+def Usage():
+    print
+    print '''\033[;32m  resolve hostname or ip
+
+    Usage:  %s hostname or ip
+            %s -f file
+
+            %s by 919953500@qq.com
+    \033[0m''' % (sys.argv[0],sys.argv[0],sys.argv[0])
+    sys.exit()
+
+
+try:
+    if len(sys.argv[0]) == 1 or sys.argv[1] == "-h" or sys.argv[1] == "--help":
+        Usage()
+except IndexError:
+    Usage()
+
+
+# 将IP地址解析成主机名
+def ip_to_host(ip):
+    try:
+        result = socket.gethostbyaddr(ip)
+        print result[0] + ' | ' + ip
+    except (socket.gaierror, socket.herror):
+        print '\033[;33m IP   : %s Not found\033[0m' % ip
+
+# 将主机名解析成IP地址
+def host_to_ip(host):
+    try:
+        #result = socket.getaddrinfo(host,port)
+        result = socket.getaddrinfo(host,None)
+        print result[0][-1][0] + ' | ' + host
+    except (socket.gaierror, socket.herror):
+        print '\033[;33m HOST : %s Not found\033[0m' % host
+
+# 验证IP是否合法
+def valid_ip(ip):
+    try:
+        socket.inet_aton(ip)
+        return 'True'
+    except:
+        return 'False'
+
+
+# -f 指定文件批量操作
+argv = sys.argv[1]
+if argv == '-f':
+    try:
+        file = sys.argv[2]
+        f = open(file,'r')
+        for line in f.readlines():
+            line = line.strip().strip('\n')
+            if valid_ip(line) == 'True':
+                ip_to_host(line)
+            elif valid_ip(line) == 'False':
+                host_to_ip(line)
+        f.close()
+    except:
+        print '\033[;31m Please specify a file\033[0m'
+elif valid_ip(argv) == 'True':
+    ip_to_host(argv)
+elif valid_ip(argv) == 'False':
+    host_to_ip(argv)
+else:
+    Usage()
