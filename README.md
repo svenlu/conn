@@ -56,14 +56,14 @@ conn堡垒机:conn修改了paramiko的源码,支持详细日志审计和录像�
 主机(域名)解析
 ```
     connhost 10.237.39.27
-      10.237.39.27  |  hh-b2c-backend-dev01.bj
-    connhost hh-b2c-backend-dev01.bj
-      hh-b2c-backend-dev01.bj  |  10.237.39.27
+      10.237.39.27  |  hh-c2c-dev01.bj
+    connhost hh-c2c-dev01.bj
+      hh-c2c-dev01.bj  |  10.237.39.27
 
     支持文件批量解析
     connhost -f ipfile
-      10.100.2.43  | hh-b2c-backend-dev11.bj
-      10.100.2.49  | hh-b2c-backend-dev12.bj
+      10.100.2.43  | hh-c2c-dev11.bj
+      10.100.2.49  | hh-c2c-dev12.bj
 ```
 
 联系我(珊瑚)
