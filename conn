@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+import os, sys
+import getpass
+# Import conn Lib
+from record import record_videos
+
+# set linux tab
+#if os.path.isfile(os.path.expanduser('~/.ssh/known_hosts')):
+#    cmd = '''complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" %s''' % sys.argv[0]
+#    os.system(cmd)
+
+
+def usage():
+    print
+    print '''\033[;32m  connection remote hostname operator and record all infomation.
+
+    Usage:  %s hostname or ip
+            %s user@hostname:port
+
+            %s by 919953500@qq.com
+    \033[0m''' % (sys.argv[0],sys.argv[0],sys.argv[0])
+    sys.exit()
+
+@record_videos
+def run(username, hostname, port):
+    print hostname, 'closed.'
+
+# currently username
+username = getpass.getuser()
+if len(sys.argv) > 1:
+    hostname = sys.argv[1]
+    if hostname.find('@') >= 0:
+        username, hostname = hostname.split('@')
+else:
+    usage()
+    sys.exit(1)
+port = 22
+if hostname.find(':') >= 0:
+    hostname, portstr = hostname.split(':')
+    port = int(portstr)
+
+run(username, hostname, port)    
+
+
+

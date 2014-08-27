@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+import os, sys
+
+def usage():
+    print
+    print '''\033[;32m  replay video of record infomation.
+
+    Usage:  %s ls               display all videos list.
+            %s play video_name  play video file.
+
+            %s by 919953500@qq.com
+    \033[0m''' % (sys.argv[0],sys.argv[0],sys.argv[0])
+    sys.exit()
+
+try:
+    videolist = []
+    for root, dirs, files in os.walk('videos'):
+        for f in files:
+            videolist.append(f.replace('.time', '').replace('.his', ''))
+    videolist = list(set(videolist))
+
+    if sys.argv[1] == 'ls':
+        for i in videolist: print i 
+    elif sys.argv[1] == 'play':
+        try:
+            if sys.argv[2] in videolist:
+                print sys.argv[2]
+                cmd = './scriptreplay videos/%s.time videos/%s.his' % (sys.argv[2], sys.argv[2])
+                os.system(cmd)
+            else:
+                print 'choice play file name'
+        except:
+            print 'choice play file name'
+    else:
+        raise error
+except:
+        usage() 
+        #pass
+
+
