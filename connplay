@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import os, sys
+import __init__
 
 def usage():
     print

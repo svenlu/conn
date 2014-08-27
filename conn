@@ -2,6 +2,7 @@
 import os, sys
 import getpass
 # Import conn Lib
+import __init__
 from record import record_videos
 
 # set linux tab
