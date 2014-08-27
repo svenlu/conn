@@ -3,7 +3,7 @@ conn
 
 审计在运维中占有很重要的一部分，审计追溯历史问题.conn是connection的前缀.   
 
-conn堡垒机:支持详细日志审计和录像功能,conn服务器上每一步操作都能记录.  
+conn堡垒机:conn修改了paramiko的源码,支持详细日志审计和录像功能,conn服务器上每一步操作都能记录.  
   conn命令:  登录远端服务器，并记录所有操作和录像  
   connplay:  播放历史录像，审核服务器记录  
   connhost:  正向和反向解析主机名或ip地址(可批量)  
@@ -56,8 +56,14 @@ conn堡垒机:支持详细日志审计和录像功能,conn服务器上每一步�
 主机(域名)解析
 ```
     connhost 10.237.39.27
+      10.237.39.27  |  hh-b2c-backend-dev01.bj
     connhost hh-b2c-backend-dev01.bj
+      hh-b2c-backend-dev01.bj  |  10.237.39.27
+
+    支持文件批量解析
     connhost -f ipfile
+      10.100.2.43  | hh-b2c-backend-dev11.bj
+      10.100.2.49  | hh-b2c-backend-dev12.bj
 ```
 
 联系我(郑东旭)
